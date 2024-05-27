@@ -1,0 +1,67 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+}
+
+:root{
+    --color-white: hsl(252, 30%, 100%);
+    --color-light: hsl(252, 30%, 90%);
+    --color-gray: hsl(252, 15%, 60%);
+    --color-secondary: hsl(252, 80%, 70%);
+    --color-success: hsl(120, 60%, 50%);
+    --color-danger: hsl(0, 70%, 50%);
+    --color-dark: hsl(252, 30%, 20%);
+    --color-black: hsl(252, 30%, 10%);
+
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+
+    --search-padding: .6rem 1rem;
+    --card-padding: 1rem;
+
+    ---btn-padding: .6rem 2rem;
+
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--color-dark);
+    background: var(--color-light);
+    overflow: hidden;
+}
+
+.container{
+    width : 90%;
+    width: 100%;
+}
+
+img{
+    display: block;
+    width: 100%;
+}
+
+.profile-picture{
+    width: 3rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.btn{
+    padding: var(---btn-padding);
+    display: inline-block;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: 300ms ease all;
+}
+
+.btn:hover{
+    
+}
