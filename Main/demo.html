@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Popup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+       .modal-content {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+        }
+       .modal-header {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+       .modal-title {
+            font-weight: bold;
+        }
+       .modal-body {
+            padding: 20px;
+        }
+       .form-control {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+       .form-control:focus {
+            border-color: #337ab7;
+            box-shadow: 0 0 10px rgba(51, 122, 183, 0.5);
+        }
+       .btn-primary {
+            background-color: #337ab7;
+            border-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+       .btn-primary:hover {
+            background-color: #23527c;
+            border-color: #23527c;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Click Here</button>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Title</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="description">Title</label>
+                            <input type="text"  class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" style="height: 134px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">File:</label>
+                            <input type="file" class="form-control-file" id="file" name="file">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#myModal').on('show.bs.modal', function(e) {
+            $(this).find('.modal-body').css('overflow-y', 'auto');
+        });
+    </script>
+</body>
+</html>
