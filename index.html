@@ -56,12 +56,14 @@
                 <div class="home-center-wrapper">
                     <div class="createPost">
 
-                        <div class="post-text">
-                            <img src="images/user.jpg" alt="user">
-                            <input type="text" placeholder="What's on your mind, Zahidul?">
-                            <button class="fa fa-paper-plane" ></button>
-                        </div>
+                        
                         <div class="post-icon">
+
+                            <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#myModal">
+                                <i style="background: #0053ff;" class="fa fa-plus-square"></i>
+                                Add Post
+                            </a>
+
                             <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#galleryModal">
                                 <i style="background: #ff4154;" class="fas fa-camera"></i>
                                 Gallery
@@ -161,7 +163,7 @@
                             </div>
                         
 
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Click Here</button>
+                            
 
                             <div class="modal fade" id="myModal">
                                 <div class="modal-dialog">
@@ -199,15 +201,8 @@
                    
                     <div class="fb-post1">
                         <div class="fb-post1-container">
-                            <div class="fb-post1-header">
-                                <ul>
-                                    <li class="active">popular</li>
-                                    <li>recent</li>
-                                    <li>most view</li>
-                                </ul>
-                            </div>
-
-                            <div class="post_div">
+                         
+                           <div class="post_div">
                                 <div class="fb-p1-main">
                                     <div class="post-title">
                                         <img src="images/user2.jpg" alt="user picture">
@@ -256,59 +251,6 @@
                             
                                 
                             </div>
-<br>
-<br>
-<br>
-                            <div class="post_div">
-                                <div class="fb-p1-main">
-                                    <div class="post-title">
-                                        <img src="images/user2.jpg" alt="user picture">
-                                        <ul>
-                                            <li><h3>Arham Kabir <span> . 2 hours ago</span></h3></li>
-                                            <li><span>02 march at 12:55 PM</span></li>
-                                        </ul>
-                                        <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
-                                            <a href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
-                                        </p>
-                                    </div>
-    
-                                    <div class="post-images">
-                                        <div class="post-images1">
-                                            <img src="images/pp.jpg" alt="post images 01">
-                                        
-                                        </div>
-                                    </div>
-                                    
-                                        <ul>
-                                            <li>
-                                                
-                                                    <button class="like-btn" id="likeBtn">
-                                                        <span class="heart" id="heartIcon"></span>
-                                                        
-                                                        
-                                                    </button>
-                                                    
-                                               
-                                            </li>
-                                            <li>
-                                                <div class="comment-field">
-                                                    <input type="text" placeholder="Write a comment..." style="width: 500px;">
-                                                    <button><i class="fa fa-paper-plane"></i></button>
-                                                </div>
-                                            </li>
-                                            
-                                       
-
-                                            
-                                        </ul>
-                                        
-                                        
-                                 
-                                </div>
-                            
-                                
-                            </div>
-
 
 
 
@@ -318,9 +260,9 @@
 
 
                 </div> 
-                <!-- home center wrapper end -->
+               
             </div>
-             <!-- home center end -->
+             
 
             <div class="home-right">
                 
@@ -377,37 +319,6 @@
 
 
 </body>
-<script>
-    $('#myModal').on('show.bs.modal', function(e) {
-        $(this).find('.modal-body').css('overflow-y', 'auto');
-    });
-</script>
-<script>
-    $('#locationModal').on('show.bs.modal', function(e) {
-        // Check if geolocation is available
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                // Get the coordinates
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                // Set the value of the GPS coordinates input
-                $('#gpsCoordinates').val(latitude + ', ' + longitude);
-            }, function(error) {
-                console.error("Error Code = " + error.code + " - " + error.message);
-                $('#gpsCoordinates').val('Unable to retrieve location');
-            });
-        } else {
-            console.error("Geolocation is not supported by this browser.");
-            $('#gpsCoordinates').val('Geolocation not supported');
-        }
-    });
-</script>
-<script>
-    $(function() {
-        $(".heart").on("click", function() {
-            $(this).toggleClass("is-active");
-        });
-    });
-</script>
+<link rel="stylesheet" href="assets/script.js">
 
 </html>
