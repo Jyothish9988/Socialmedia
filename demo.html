@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Popup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+        .modal-content {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .modal-header {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .modal-title {
+            font-weight: bold;
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .form-control {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-control:focus {
+            border-color: #337ab7;
+            box-shadow: 0 0 10px rgba(51, 122, 183, 0.5);
+        }
+        .btn-primary {
+            background-color: #337ab7;
+            border-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #23527c;
+            border-color: #23527c;
+        }
+        .custom-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .custom-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#galleryModal">
+        <i style="background: #ff4154;" class="fas fa-camera"></i>
+        Gallery
+    </a>
+
+    <a href="#" class="custom-btn" style="background: #ccdcff;" data-toggle="modal" data-target="#videoModal">
+        <i style="background: #0053ff;" class="fas fa-video"></i>
+        Video
+    </a>
+
+    <a href="#" class="custom-btn" style="background: #d7ffef;" data-toggle="modal" data-target="#locationModal">
+        <i style="background: #00d181;" class="fas fa-location-dot"></i>
+        Location
+    </a>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload Gallery</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="galleryTitle">Gallery Title:</label>
+                            <input type="text" class="form-control" id="galleryTitle" name="galleryTitle">
+                        </div>
+                        <div class="form-group">
+                            <label for="galleryDescription">Gallery Description:</label>
+                            <textarea class="form-control" id="galleryDescription" name="galleryDescription" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="galleryFile">Gallery File:</label>
+                            <input type="file" class="form-control-file" id="galleryFile" name="galleryFile">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal fade" id="videoModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload Video</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="videoTitle">Video Title:</label>
+                            <input type="text" class="form-control" id="videoTitle" name="videoTitle">
+                        </div>
+                        <div class="form-group">
+                            <label for="videoDescription">Video Description:</label>
+                            <textarea class="form-control" id="videoDescription" name="videoDescription" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="videoFile">Video File:</label>
+                            <input type="file" class="form-control-file" id="videoFile" name="videoFile">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Modal -->
+    <div class="modal fade" id="locationModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Location</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="locationName">Location Name:</label>
+                            <input type="text" class="form-control" id="locationName" name="locationName">
+                        </div>
+                        <div class="form-group">
+                            <label for="locationDescription">Location Description:</label>
+                            <textarea class="form-control" id="locationDescription" name="locationDescription" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="locationAddress">Location Address:</label>
+                            <input type="text" class="form-control" id="locationAddress" name="locationAddress">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Location</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#galleryModal, #videoModal, #locationModal').on('show.bs.modal', function(e) {
+            $(this).find('.modal-body').css('overflow-y', 'auto');
+        });
+    </script>
+</body>
+</html>

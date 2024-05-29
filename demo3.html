@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post with Like Animation and Comment Field</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+        .post_div {
+            background: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            position: relative; /* Added */
+        }
+        .fb-p1-main {
+            margin-bottom: 20px;
+        }
+        .post-title {
+            display: flex;
+            align-items: flex-start;
+        }
+        .post-title img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .post-title ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .post-title ul li {
+            margin-bottom: 5px;
+        }
+        .post-title ul li h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .post-title ul li span {
+            font-size: 14px;
+            color: gray;
+        }
+        .post-title p {
+            margin-top: 10px;
+        }
+        .post-images1 img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .like-comment {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        .like-comment ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .like-comment ul li {
+            margin-right: 15px;
+        }
+        .like-comment button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .like-comment button span {
+            margin-left: 5px;
+        }
+        .heart {
+            width: 50px;
+            height: 50px;
+            background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+            cursor: pointer;
+            transition: background-position 1s steps(28);
+            transition-duration: 0s;
+        }
+        .heart.is-active {
+            transition-duration: 1s;
+            background-position: -2520px 0; /* 90px * 28 steps = 2520px */
+        }
+        .comment-field {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .comment-field input {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        .comment-field button {
+            background-color: #337ab7;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .comment-field button:hover {
+            background-color: #23527c;
+        }
+        .comments-popup {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1;
+            width: 200px; /* Added */
+            right: 0; /* Added */
+            top: 100%; /* Added */
+        }
+        .comments-popup p {
+            margin: 5px 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function() {
+            $(".heart").on("click", function() {
+                $(this).toggleClass("is-active");
+            });
+            $(".comment-button").on("click", function() {
+                $(".comments-popup").toggle();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="post_div">
+        <div class="fb-p1-main">
+            <div class="post-title">
+                <img src="images/user2.jpg" alt="user picture">
+                <ul>
+                    <li><h3>Arham Kabir <span> . 2 hours ago</span></h3></li>
+                    <li><span>02 March at 12:55 PM</span></li>
+                </ul>
+                <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
+                    <a href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
+                </p>
+            </div>
+
+            <div class="post-images">
+                <div class="post-images1">
+                    <img src="images/pp.jpg" alt="post images 01">
+                </div>
+            </div>
+            <div class="like-comment">
+                <ul>
+                    <li>
+                        <button class="heart"></button>
+                        <span>22k like</span>
+                    </li>
+                    <li>
+                        <button class="comment-button">
+                            <i class="fa-regular fa-comment-dots"></i>
+                            <span>555 comments</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <i class="fa-solid fa-share-from-square"></i>
+                            <span>254 share</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="comment-field">
+                <input type="text" placeholder="Write a comment...">
+                <button><i class="fa fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <div class="comments-popup">
+            <p>User 1: This is a comment.</p>
+            <p>User 2: This is another comment.</p>
+            <!-- Add more comments here -->
+        </div>
+    </div>
+</body>
+</html>

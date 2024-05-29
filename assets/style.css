@@ -9,7 +9,7 @@
     font-family: 'Poppins', sans-serif;
 }
 :root{
-    --background: #d1deec;
+    --background: rgb(209, 222, 236);
     --foreground: #f1f3f5;
     --white: #fff;
     --black: #000;
@@ -32,7 +32,7 @@
 }
 
 body{
-    /* background: var(--background); */
+    background-image: url('assets/images/bac.jpg');
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: #3a78ffec;
     overflow-x: fixed;
@@ -62,7 +62,7 @@ header{
 }
 .header-container{
     width: 95%;
-    background: var(--white);
+    background: #f3eeee;
     height: 70px;
     overflow: hidden;
     padding: 10px;
@@ -326,7 +326,7 @@ header{
 }
 .home-center .stories,
 .home-center .createPost{
-    background: var(--white);
+    background: #f3eeee;
     box-shadow: 0 2px 5px 0 var(--shadow);
     border-radius: 20px;
     padding: 15px;
@@ -382,7 +382,7 @@ header{
 /* facebook post 01 start */
 
 .fb-post1{
-    background: var(--white);
+    background: #f3eeee;
     box-shadow: 0 2px 5px 0 var(--shadow);
     border-radius: 20px;
     padding: 15px 20px;
@@ -530,7 +530,7 @@ header{
 .event-friend,
 .create-page,
 .messenger{
-    background: var(--white);
+    background: #f3eeee;
     box-shadow: 0 2px 5px 0 var(--shadow);
     border-radius: 20px;
     padding: 15px;
@@ -834,3 +834,43 @@ header{
             background-color: #23527c;
             border-color: #23527c;
         }
+/* --------heart------- */
+
+.heart {
+    width: 90px;
+    height: 90px;
+    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+    cursor: pointer;
+    border-radius: 0%;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
+}
+.heart.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
+}
+
+.comment-field {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.comment-field input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+.comment-field button {
+    background-color: #337ab7;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.comment-field button:hover {
+    background-color: #23527c;
+}

@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-image: url('assets/images/bac.jpg');">
     
 <!-- header section start -->
 
@@ -56,32 +56,110 @@
                 <div class="home-center-wrapper">
                     <div class="createPost">
 
-                        <h3 class="mini-headign">Create Post</h3>
                         <div class="post-text">
                             <img src="images/user.jpg" alt="user">
-                            <input type="text-area" placeholder="What's on your mind, zahidul">
+                            <input type="text" placeholder="What's on your mind, Zahidul?">
+                            <button class="fa fa-paper-plane" ></button>
                         </div>
-
                         <div class="post-icon">
-                            <a href="#" style="background: #ffebed;">
-                            <i style="background: #ff4154;" class="fa-solid fa-camera"></i>
-                            Gallery</a>
-
-                            <a href="#" style="background: #ccdcff;">
-                            <i style="background: #0053ff;" class="fa-solid fa-video"></i>
-                            Video</a>
-
-                            <a href="#" style="background: #d7ffef;">
-                            <i style="background: #00d181;" class="fa-solid fa-location-dot"></i>
-                            Location</a>
-
-                            <a href="#" style="background: #cff3ff;">
-                            <i style="background: #04c3ff;" class="fa-solid fa-gift"></i>
-                            Gift</a>
-                            
-                            <a href="#" style="background: #fff4d1;">
-                            <i style="background: #ffca28;" class="fa-solid fa-face-grin-beam"></i>
-                            Feeling / Acrivity</a>
+                            <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#galleryModal">
+                                <i style="background: #ff4154;" class="fas fa-camera"></i>
+                                Gallery
+                            </a>
+                        
+                            <a href="#" class="custom-btn" style="background: #ccdcff;" data-toggle="modal" data-target="#videoModal">
+                                <i style="background: #0053ff;" class="fas fa-video"></i>
+                                Video
+                            </a>
+                        
+                            <a href="#" class="custom-btn" style="background: #d7ffef;" data-toggle="modal" data-target="#locationModal">
+                                <i style="background: #00d181;" class="fas fa-location-dot"></i>
+                                Location
+                            </a>
+                        
+                            <!-- Gallery Modal -->
+                            <div class="modal fade" id="galleryModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Upload Gallery</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="galleryTitle">Gallery Title:</label>
+                                                    <input type="text" class="form-control" id="galleryTitle" name="galleryTitle">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="galleryDescription">Gallery Description:</label>
+                                                    <textarea class="form-control" id="galleryDescription" name="galleryDescription" rows="4"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="galleryFile">Gallery File:</label>
+                                                    <input type="file" class="form-control-file" id="galleryFile" name="galleryFile">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Video Modal -->
+                            <div class="modal fade" id="videoModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Upload Video</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="videoTitle">Video Title:</label>
+                                                    <input type="text" class="form-control" id="videoTitle" name="videoTitle">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="videoDescription">Video Description:</label>
+                                                    <textarea class="form-control" id="videoDescription" name="videoDescription" rows="4"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="videoFile">Video File:</label>
+                                                    <input type="file" class="form-control-file" id="videoFile" name="videoFile">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Location Modal -->
+                            <div class="modal fade" id="locationModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add Location</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="locationName">Location Name:</label>
+                                                    <input type="text" class="form-control" id="locationName" name="locationName">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="gpsCoordinates">GPS Coordinates:</label>
+                                                    <input type="text" class="form-control" id="gpsCoordinates" name="gpsCoordinates" readonly>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Add Location</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
 
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Click Here</button>
 
@@ -151,25 +229,20 @@
                                     <div class="like-comment">
                                         <ul>
                                             <li>
-                                                <button>
-                                                    <i class="fa-solid fa-heart"></i>
-                                                    <i class="fa-solid fa-thumbs-up"></i>
-                                                    <span>22k like</span>
+                                                <button class="heart">
+                                                
                                                 </button>
                                             </li>
-                                            <li>
-                                                <button>
-                                                    <i class="fa-regular fa-comment-dots"></i>
-                                                    <span>555 comments</span>
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button>
-                                                    <i class="fa-solid fa-share-from-square"></i>
-                                                    <span>254 share</span>
-                                                </button>
-                                            </li>
+                                            
+                                       
+
+                                            
                                         </ul>
+                                        <div class="comment-field">
+                                            <input type="text" placeholder="Write a comment...">
+                                            <button><i class="fa fa-paper-plane"></i></button>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             
@@ -305,4 +378,32 @@
         $(this).find('.modal-body').css('overflow-y', 'auto');
     });
 </script>
+<script>
+    $('#locationModal').on('show.bs.modal', function(e) {
+        // Check if geolocation is available
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                // Get the coordinates
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                // Set the value of the GPS coordinates input
+                $('#gpsCoordinates').val(latitude + ', ' + longitude);
+            }, function(error) {
+                console.error("Error Code = " + error.code + " - " + error.message);
+                $('#gpsCoordinates').val('Unable to retrieve location');
+            });
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+            $('#gpsCoordinates').val('Geolocation not supported');
+        }
+    });
+</script>
+<script>
+    $(function() {
+        $(".heart").on("click", function() {
+            $(this).toggleClass("is-active");
+        });
+    });
+</script>
+
 </html>
