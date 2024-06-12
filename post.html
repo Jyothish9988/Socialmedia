@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .fb-post1 {
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .post-title img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .post-title ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .post-title ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        .post-title h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .post-title p {
+            margin: 10px 0 0 0;
+        }
+        .post-images img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .post-interactions ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .like-btn, .view-comments-btn, .comment-field button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .like-btn .heart {
+            font-size: 1.8em;
+            color: rgb(194, 218, 255);
+        }
+        .liked .heart {
+            color: red;
+        }
+        .comment-field {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .comment-field input {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+        .comment-field button {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+        }
+        .comments-section {
+            display: none;
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .view-comments-btn {
+            color: #007bff;
+        }
+        #viewsCount {
+            text-align: right;
+            font-size: 0.9em;
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+
+<div class="fb-post1">
+    <div class="fb-post1-container">
+        <div class="post_div">
+            <div class="fb-p1-main">
+                <div class="post-title">
+                    <img src="images/user2.jpg" alt="user picture">
+                    <ul>
+                        <li><h3>Arham Kabir <span> . 2 hours ago</span></h3></li>
+                        <li><span>02 March at 12:55 PM</span></li>
+                    </ul>
+                    <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
+                        <a href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
+                    </p>
+                </div>
+                <div class="post-images">
+                    <img src="images/pp.jpg" alt="post images 01">
+                </div>
+                <div class="post-interactions">
+                    <ul>
+                        <li>
+                            <button class="like-btn" id="likeBtn">
+                                <span class="heart" id="heartIcon"><i class="fa fa-heart"></i></span> <span id="likeCount">0</span> Likes
+                            </button>
+                        </li>
+                        <li>
+                            <button class="view-comments-btn" id="viewCommentsBtn">View Comments</button>
+                        </li>
+                    </ul>
+                    <div id="viewsCount">1000 views</div>
+                </div>
+                <div class="comment-field">
+                    <input type="text" placeholder="Write a comment...">
+                    <button><i class="fa fa-paper-plane"></i></button>
+                </div>
+                <div class="comments-section" id="commentsSection">
+                    <p>Comment 1: Great post!</p>
+                    <p>Comment 2: Thanks for sharing!</p>
+                    <!-- Add more comments here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeBtn = document.getElementById('likeBtn');
+        const heartIcon = document.getElementById('heartIcon');
+        const likeCount = document.getElementById('likeCount');
+        let liked = false;
+        let likes = 0;
+
+        likeBtn.addEventListener('click', function() {
+            liked = !liked;
+            if (liked) {
+                likes++;
+                likeBtn.classList.add('liked');
+            } else {
+                likes--;
+                likeBtn.classList.remove('liked');
+            }
+            likeCount.textContent = likes;
+        });
+
+        const viewCommentsBtn = document.getElementById('viewCommentsBtn');
+        const commentsSection = document.getElementById('commentsSection');
+
+        viewCommentsBtn.addEventListener('click', function() {
+            if (commentsSection.style.display === 'none' || commentsSection.style.display === '') {
+                commentsSection.style.display = 'block';
+                viewCommentsBtn.textContent = 'Hide Comments';
+            } else {
+                commentsSection.style.display = 'none';
+                viewCommentsBtn.textContent = 'View Comments';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

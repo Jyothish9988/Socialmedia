@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Text Animation</title>
+    <style>
+        body {
+            background: #3498db;
+            font-family: 'Comic Sans MS', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            position: relative;
+            color: rgba(0, 0, 0, 0.3);
+            font-size: 5em;
+        }
+        h1:before {
+            content: attr(data-text);
+            position: absolute;
+            overflow: hidden;
+            max-width: 7em;
+            white-space: nowrap;
+            color: #fff;
+            animation: loading 4s linear infinite;
+        }
+        @keyframes loading {
+            0% {
+                max-width: 0;
+            }
+            100% {
+                max-width: 7em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 data-text="Friendly">Friendly</h1>
+</body>
+</html>

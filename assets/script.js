@@ -1,4 +1,4 @@
-<script>
+
     $(document).ready(function() {
         // Overflow-y auto for modal body
         $('#myModal').on('show.bs.modal', function(e) {
@@ -24,10 +24,3 @@
                 $('#gpsCoordinates').val('Geolocation not supported');
             }
         });
-
-        // Heart animation
-        $(".heart").on("click", function() {
-            $(this).toggleClass("is-active");
-        });
-    });
-</script>
