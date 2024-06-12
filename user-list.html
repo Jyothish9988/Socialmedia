@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Search</title>
+<style>
+  /* Your CSS code */
+  .container {
+    max-width: 830px;
+    margin: 6rem auto 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Karla:400,700');
+
+/* Variables */
+:root {
+  --container-width: 830px;
+  --border-radius: 5px;
+  /* Colors */
+  --color-white: #ffffff;
+  --base-ui--1: #f6f7f9;
+  --base-ui--2: #e1e4ea;
+  --base-ui--3: #cacfd9;
+  --base-ui--4: #91a1bb;
+  --base-ui--5: #597191;
+  --base-ui--6: #5f789b;
+  --base-ui--7: #002b5d;
+  --state-ui--primary: #3384f3;
+  --state-ui--danger: #d63031;
+  --state-ui--success: #00b894;
+  --state-ui--info: #D980FA;
+  --state-ui--warning: #fdcb6e;
+}
+
+/* Global styles */
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  color: var(--base-ui--7);
+  font-family: 'Karla', arial, sans-serif;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 6rem auto 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.row {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.list-item {
+  width: 100%;
+  max-width: 390px;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: var(--base-ui--7);
+  text-decoration: none;
+}
+
+.list-item:hover {
+  border: 1px solid var(--border-color-hover);
+  color: var(--state-ui--primary);
+  background: var(--base-ui--1);
+}
+
+.list-item:hover .list-item__button {
+  opacity: 1;
+  transition: all 100ms ease;
+}
+
+.list-item__avatar {
+  margin-right: 1rem;
+}
+
+.list-item__avatar img {
+  border: 1px solid var(--base-ui--3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: var(--base-ui--2);
+}
+
+.list-item__name {
+  display: block;
+}
+
+.list-item__info {
+  font-size: 0.85em;
+  color: var(--base-ui--4);
+}
+
+.list-item__button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  font-family: inherit;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 18px;
+  height: 18px;
+  font-weight: 700;
+  background: var(--state-ui--primary);
+  color: var(--color--white);
+  line-height: 18px;
+  text-transform: uppercase;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0.6;
+  outline: none;
+}
+
+.list-item__button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search {
+  margin-bottom: 4rem;
+  font-size: 2.4rem;
+  position: relative;
+}
+
+.search label,
+.search input {
+  display: block;
+}
+
+.search label {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.search input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--base-ui--3);
+  font-family: inherit;
+  outline: none;
+}
+
+.search input:focus {
+  box-shadow: 0px 0px 0px 3px rgba(var(--state-ui--primary), 0.15);
+  border-color: var(--state-ui--primary);
+}
+
+.search__clear {
+  position: absolute;
+  top: 5.3rem;
+  right: 1rem;
+  cursor: pointer;
+  background: var(--base-ui--2);
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  color: var(--base-ui--4);
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 1.4rem;
+}
+
+.search__clear:hover {
+  background: var(--base-ui--3);
+  color: var(--base-ui--5);
+}
+
+.recent-search {
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.search-item {
+  font-size: 1.4rem;
+  display: inline-block;
+  padding: 0.5rem;
+  line-height: 1;
+  color: var(--state-ui--primary);
+  border-radius: var(--border-radius);
+  background: rgba(var(--state-ui--primary), 0.85);
+  cursor: pointer;
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.search-item:hover,
+.search-item:focus {
+  color: darken(var(--state-ui--primary), 10%);
+  background: rgba(var(--state-ui--primary), 0.8);
+}
+
+.search-item__close {
+  opacity: 0.5;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.search-item__close:hover {
+  color: var(--state-ui--danger);
+}
+
+.search-item:nth-of-type(5n + 2) {
+  color: var(--state-ui--success);
+  background: rgba(var(--state-ui--success), 0.85);
+}
+
+.search-item:nth-of-type(5n + 3) {
+  color: var(--state-ui--info);
+  background: rgba(var(--state-ui--info), 0.85);
+}
+
+.search-item:nth-of-type(5n + 4) {
+  color: var(--state-ui--danger);
+  background: rgba(var(--state-ui--danger), 0.85);
+}
+
+.search-item:nth-of-type(5n + 5) {
+  color: darken(var(--state-ui--warning), 20%);
+  background: rgba(var(--state-ui--warning), 0.8);
+}
+
+.clear-btn {
+  font-family: inherit;
+  background: var(--base-ui--4);
+  color: var(--color--white);
+  border: 0;
+  cursor: pointer;
+  margin-right: 1rem;
+  border-radius: var(--border-radius);
+  font-size: 1.4rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  line-height: 1;
+}
+
+.clear-btn:hover {
+  background: var(--base-ui--5);
+}
+
+.clear-btn:focus,
+.clear-btn:active {
+  outline: 0;
+}
+
+.clear-btn:disabled {
+  background: var(--base-ui--1);
+  color: var(--base-ui--4);
+  cursor: not-allowed;
+}
+
+
+  /* Rest of your CSS code */
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="search">
+      <label for="user-search">Search for user</label>
+      <input type="search" id="user-search" data-search placeholder="Search...">
+      <button class="search__clear">&times;</button>
+      <div class="recent-search">
+        <button class="clear-btn" disabled>No Recent Items</button>
+        <div class="recent-search__list"></div>
+      </div>
+    </div>
+    <div id="list" class="list" data-searchable></div>
+  </div>
+</div>
+
+<!-- Your JavaScript code -->
+<script>
+  const list = document.getElementById("list");
+  const amount = 100;
+
+  // Render Users
+  const template = listItem => {
+    return `
+      <a class="list-item" href="#">
+        <div class="list-item__avatar">
+          <img src="${listItem.picture.large}" />
+        </div>
+        <div class="list-item__content">
+          <strong class="list-item__name">${listItem.name.first} ${listItem.name.last}</strong>
+          <span class="list-item__info">@${listItem.login.username} <br>  @${listItem.email}</span>
+        </div>
+        <button type="button" class="list-item__button">
+          <svg class="feather feather-plus" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+      </a>
+    `;
+  };
+
+  fetch(`https://randomuser.me/api/?results=${amount}`, { method: "get" })
+    .then(response => response.json())
+    .then(data =>
+      data.results.forEach(result => (list.innerHTML += template(result)))
+    )
+    .catch(error => console.log(error));
+
+  // Search
+  const userSearch = document.querySelector("[data-search]");
+
+  userSearch.addEventListener("keyup", filter);
+
+  function filter() {
+    var term = document.querySelector("[data-search]").value.toLowerCase();
+    var tag = document.querySelectorAll("[data-searchable] .list-item");
+    for (i = 0; i < tag.length; i++) {
+      if (tag[i].innerHTML.toLowerCase().indexOf(term) !== -1) {
+        tag[i].style.display = "flex";
+      } else {
+        tag[i].style.display = "none";
+      }
+    }
+  }
+
+  const recentSearch = document.querySelector(".recent-search");
+  const recentSearchList = document.querySelector(".recent-search__list");
+  const recentSearchCount = recentSearchList.childNodes.length;
+  const clearBtn = document.querySelector(".clear-btn");
+  const clearSearch = document.querySelector('.search__clear');
+
+  clearSearch.addEventListener('click', () => {
+    userSearch.value = "";
+    filter();
+  })
+
+  userSearch.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      let inputText = userSearch.value.toLowerCase();
+      recentSearchList.insertAdjacentHTML(
+        "beforeend",
+        `<span class="search-item" onclick="labelSearch('${inputText}')">${inputText}<span class="search-item__close">×</span></span>`
+      );
+      if (recentSearchCount > 0) {
+        clearBtn.innerHTML = "Clear Items";
+        clearBtn.removeAttribute("disabled");
+        var btn = document.querySelectorAll(".search-item__close");
+        btn.forEach(button => {
+          button.addEventListener("click", function (e) {
+            e.currentTarget.parentNode.remove();
+          });
+        });
+      }
+    }
+  });
+
+  function labelSearch(x) {
+    userSearch.value = x;
+    filter();
+  }
+
+  const clearRecent = () => {
+    recentSearchList.innerHTML = "";
+    clearBtn.setAttribute("disabled", true);
+    clearBtn.innerHTML = "No Recent Items";
+    userSearch.value = '';
+    filter();
+  };
+</script>
+</body>
+</html>
