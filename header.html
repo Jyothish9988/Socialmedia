@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Feature</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .header-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .logoBox {
+            margin-right: auto;
+        }
+        .searchBox {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 300px;
+        }
+        .searchBox input {
+            width: 100%;
+            padding: 5px;
+        }
+        .searchBox .search__clear {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .recent-search {
+            position: absolute;
+            top: 35px;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            display: none;
+            z-index: 1000;
+        }
+        .recent-search .clear-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 5px;
+            background: #f1f1f1;
+            border-bottom: 1px solid #ccc;
+        }
+        .recent-search__list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .recent-search__list .search-item {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .recent-search__list .search-item:hover {
+            background: #f1f1f1;
+        }
+
+
+        .list {
+            -ms-overflow-style: none;  /* IE and Edge */
+            /* scrollbar-width: none;  */
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 800px;
+            right: 300px;
+            background: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .list-item {
+            display: flex;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+        }
+        .list-item:hover {
+            background: #f1f1f1;
+        }
+        .list-item__avatar img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .list-item__content {
+            flex-grow: 1;
+        }
+        .list-item__name {
+            font-weight: bold;
+        }
+        .list-item__button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="logoBox">
+                    <a class="navbar-brand" href="#">Friendly</a>
+                </div>
+                <div class="searchBox" data-toggle="modal" data-target="#searchmodal">
+                    <input type="search" id="user-search" data-search placeholder="Search...">
+                    <button class="search__clear">&times;</button>
+                    <div class="recent-search">
+                        <button class="clear-btn" disabled>No Recent Items</button>
+                        <div class="recent-search__list"></div>
+                    </div>
+                </div>
+                <div id="list" class="list" data-searchable></div>
+            </div>
+            <div class="iconBox2">
+                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-circle-plus" data-target="#myModal" data-toggle="modal"></i>
+                <i class="fa-brands fa-facebook-messenger"></i>
+                <i class="fa-solid fa-bell"></i>
+                <label><img src="images/user.jpg" alt="user"></label>
+                <i class="fa-solid fa-sign-out"></i>
+            </div>
+        </div>
+    </header>
+    <script>
+        const list = document.getElementById("list");
+        const amount = 100;
+
+        // Render Users
+        const template = listItem => {
+            return `
+                <a class="list-item" href="#">
+                    <div class="list-item__avatar">
+                        <img src="${listItem.picture.large}" />
+                    </div>
+                    <div class="list-item__content">
+                        <strong class="list-item__name">${listItem.name.first} ${listItem.name.last}</strong>
+                        <span class="list-item__info">@${listItem.login.username} <br>  @${listItem.email}</span>
+                    </div>
+                    <button type="button" class="list-item__button">
+                        <svg class="feather feather-plus" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                </a>
+            `;
+        };
+
+        fetch(`https://randomuser.me/api/?results=${amount}`, { method: "get" })
+            .then(response => response.json())
+            .then(data => {
+                data.results.forEach(result => list.innerHTML += template(result));
+            })
+            .catch(error => console.log(error));
+
+        // Search
+        const userSearch = document.querySelector("[data-search]");
+
+        userSearch.addEventListener("keyup", filter);
+
+        function filter() {
+            var term = document.querySelector("[data-search]").value.toLowerCase();
+            var tag = document.querySelectorAll("[data-searchable] .list-item");
+            for (i = 0; i < tag.length; i++) {
+                if (tag[i].innerHTML.toLowerCase().indexOf(term) !== -1) {
+                    tag[i].style.display = "flex";
+                } else {
+                    tag[i].style.display = "none";
+                }
+            }
+            list.style.display = term ? "block" : "none";
+        }
+
+        const recentSearch = document.querySelector(".recent-search");
+        const recentSearchList = document.querySelector(".recent-search__list");
+        const clearBtn = document.querySelector(".clear-btn");
+        const clearSearch = document.querySelector('.search__clear');
+
+        clearSearch.addEventListener('click', () => {
+            userSearch.value = "";
+            filter();
+        });
+
+        userSearch.addEventListener("keydown", event => {
+            if (event.key === "Enter") {
+                let inputText = userSearch.value.toLowerCase();
+                recentSearchList.insertAdjacentHTML(
+                    "beforeend",
+                    `<span class="search-item" onclick="labelSearch('${inputText}')">${inputText}<span class="search-item__close">×</span></span>`
+                );
+                updateRecentSearchCount();
+            }
+        });
+
+        function labelSearch(x) {
+            userSearch.value = x;
+            filter();
+        }
+
+        const clearRecent = () => {
+            recentSearchList.innerHTML = "";
+            clearBtn.setAttribute("disabled", true);
+            clearBtn.innerHTML = "No Recent Items";
+            userSearch.value = '';
+            filter();
+        };
+
+        clearBtn.addEventListener('click', clearRecent);
+
+        function updateRecentSearchCount() {
+            const recentSearchCount = recentSearchList.childNodes.length;
+            if (recentSearchCount > 0) {
+                clearBtn.innerHTML = "Clear Items";
+                clearBtn.removeAttribute("disabled");
+                var btn = document.querySelectorAll(".search-item__close");
+                btn.forEach(button => {
+                    button.addEventListener("click", function (e) {
+                        e.currentTarget.parentNode.remove();
+                        updateRecentSearchCount();
+                    });
+                });
+            } else {
+                clearRecent();
+}
+}
+</script>
+
+</body>
+</html>

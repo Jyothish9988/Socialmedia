@@ -24,3 +24,5 @@
                 $('#gpsCoordinates').val('Geolocation not supported');
             }
         });
+
+        
