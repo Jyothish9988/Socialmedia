@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Explicit Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .image-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .explicit-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(20px);
+        }
+        .eye-mask {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .eye-mask:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+<div class="image-container">
+    <!-- Replace the URL in the src attribute with the actual image URL -->
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvsxiFMek_QzilZ9X_ELH5ZQCcWOvcYYvMVA&s" alt="Explicit Content" class="explicit-image">
+    <div class="eye-mask" onclick="toggleBlur()">👁️</div>
+</div>
+
+<script>
+    function toggleBlur() {
+        const image = document.querySelector('.explicit-image');
+        image.style.filter = image.style.filter === 'blur(0px)' ? 'blur(20px)' : 'blur(0px)';
+    }
+</script>
+
+</body>
+</html>

@@ -80,10 +80,7 @@
             background: #f1f1f1;
         }
 
-
         .list {
-            -ms-overflow-style: none;  /* IE and Edge */
-            /* scrollbar-width: none;  */
             display: none;
             position: absolute;
             top: 70px;
@@ -94,6 +91,10 @@
             z-index: 1000;
             max-height: 300px;
             overflow-y: auto;
+            scrollbar-width: none;  /* Firefox */
+        }
+        .list::-webkit-scrollbar {
+            display: none;  /* Safari and Chrome */
         }
         .list-item {
             display: flex;
@@ -132,7 +133,7 @@
                 <div class="logoBox">
                     <a class="navbar-brand" href="#">Friendly</a>
                 </div>
-                <div class="searchBox" data-toggle="modal" data-target="#searchmodal">
+                <div class="searchBox" data-toggle="modal" data-target="#searchmodal" data-id="search-box">
                     <input type="search" id="user-search" data-search placeholder="Search...">
                     <button class="search__clear">&times;</button>
                     <div class="recent-search">
@@ -140,7 +141,7 @@
                         <div class="recent-search__list"></div>
                     </div>
                 </div>
-                <div id="list" class="list" data-searchable></div>
+                <div id="list" class="list" data-searchable data-id="results-list"></div>
             </div>
             <div class="iconBox2">
                 <i class="fa-solid fa-house"></i>
@@ -249,9 +250,18 @@
                 });
             } else {
                 clearRecent();
-}
-}
-</script>
+            }
+        }
+
+        // Hide search results when clicking outside the search box
+        document.addEventListener('click', function(event) {
+            const searchBox = document.querySelector('[data-id="search-box"]');
+            const resultsList = document.querySelector('[data-id="results-list"]');
+            if (!searchBox.contains(event.target) && !resultsList.contains(event.target)) {
+                list.style.display = "none";
+            }
+        });
+    </script>
 
 </body>
 </html>
