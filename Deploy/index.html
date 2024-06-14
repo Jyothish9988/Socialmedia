@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Feature</title>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="assets/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="logoBox">
+                    <a class="navbar-brand" href="#">Friendly</a>
+                </div>
+                <div class="searchBox" data-toggle="modal" data-target="#searchmodal" data-id="search-box">
+                    <input type="search" id="user-search" data-search placeholder="Search...">
+                    <button class="search__clear">&times;</button>
+                    <div class="recent-search">
+                        <button class="clear-btn" disabled>No Recent Items</button>
+                        <div class="recent-search__list"></div>
+                    </div>
+                </div>
+                <div id="list" class="list" data-searchable data-id="results-list"></div>
+            </div>
+            <div class="iconBox2">
+                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-circle-plus" data-target="#myModal" data-toggle="modal"></i>
+                <i class="fa-brands fa-facebook-messenger"></i>
+                <i class="fa-solid fa-bell"></i>
+                <label><img src="assets/images/OIP.jpg" alt="user"></label>
+                <i class="fa-solid fa-sign-out"></i>
+            </div>
+        </div>
+    </header>
+    <div class="home">
+        <div class="container">
+            <div class="home-weapper"> 
+                <!-- home center start here -->
+                <div class="home-center">
+                    <div class="home-center-wrapper">
+                        <div class="createPost">
+    
+                            
+                            <div class="post-icon">
+    
+                                <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#myModal">
+                                    <i style="background: #0053ff;" class="fa fa-plus-square"></i>
+                                    Add Post
+                                </a>
+    
+                                <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#galleryModal">
+                                    <i style="background: #ff4154;" class="fas fa-camera"></i>
+                                    Gallery
+                                </a>
+                            
+                                <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#videoModal">
+                                    <i style="background: #0053ff;" class="fas fa-video"></i>
+                                    Video
+                                </a>
+                            
+                                <a href="#" class="custom-btn" style="background: #ffebed;" data-toggle="modal" data-target="#locationModal">
+                                    <i style="background: #00d181;" class="fas fa-location-dot"></i>
+                                    Location
+                                </a>
+    
+    
+                                  
+    
+                                <div class="modal fade" id="searchmodal">
+                                    <div class="modal-dialogs">
+                                        <div class="modal-content">
+                                            <!-- <div class="modal-header">
+                                                <h4 class="modal-title">Upload Gallery</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div> -->
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="searchBox">
+                                                      <label for="user-search">Search for user</label>
+                                                      <input type="search" id="user-search" data-search placeholder="Search...">
+                                                      <button class="search__clear">&times;</button>
+                                                      <div class="recent-search">
+                                                        <button class="clear-btn" disabled>No Recent Items</button>
+                                                        <div class="recent-search__list"></div>
+                                                      </div>
+                                                    </div>
+                                                    <div id="list" class="list" data-searchable></div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            
+                                <!-- Gallery Modal -->
+                                <div class="modal fade" id="galleryModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Upload Gallery</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="galleryTitle">Gallery Title:</label>
+                                                        <input type="text" class="form-control" id="galleryTitle" name="galleryTitle">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="galleryDescription">Gallery Description:</label>
+                                                        <textarea class="form-control" id="galleryDescription" name="galleryDescription" rows="4"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="galleryFile">Gallery File:</label>
+                                                        <input type="file" class="form-control" id="galleryFile" name="galleryFile">
+                                                    </div>
+                                   
+                                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <!-- Video Modal -->
+                                <div class="modal fade" id="videoModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Upload Video</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="videoTitle">Video Title:</label>
+                                                        <input type="text" class="form-control" id="videoTitle" name="videoTitle">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="videoDescription">Video Description:</label>
+                                                        <textarea class="form-control" id="videoDescription" name="videoDescription" rows="4"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="videoFile">Video File:</label>
+                                                        <input type="file" class="form-control-file" id="videoFile" name="videoFile">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <!-- Location Modal -->
+                                <div class="modal fade" id="locationModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Add Location</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="locationName">Location Name:</label>
+                                                        <input type="text" class="form-control" id="locationName" name="locationName">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="gpsCoordinates">GPS Coordinates:</label>
+                                                        <input type="text" class="form-control" id="gpsCoordinates" name="gpsCoordinates" readonly>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Add Location</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+    
+                                
+    
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Modal Title</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="description">Title</label>
+                                                        <input type="text"  class="form-control">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="description">Description:</label>
+                                                        <textarea class="form-control" id="description" name="description" rows="4" style="height: 134px;"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="file">File:</label>
+                                                        <input type="file" class="form-control-file" id="file" name="file">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Post</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+    
+                            </div>
+    
+                        </div>
+    
+                        <div class="post-container" id="post1">
+                            <div class="post-title">
+                                <img src="images/user2.jpg" alt="user picture">
+                                <ul>
+                                    <li><h3>Arham Kabir <span> . 2 hours ago</span></h3></li>
+                                    <li><span>02 March at 12:55 PM</span></li>
+                                </ul>
+                                <p>Hello Everyone Thanks for Watching Please SUBSCRIBE My Channel - Like Comments and Share
+                                    <a href="https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA">https://www.youtube.com/channel/UCHhGX-DD7A8jq7J_NPGN6gA</a>
+                                </p>
+                            </div>
+                            <div class="post-images">
+                                <img src="images/pp.jpg" alt="post images 01" style="height:400px;" class="double-tap-to-like">
+                            </div>
+                            <div class="post-interactions">
+                                <ul>
+                                    <li>
+                                        <button class="like-btn" id="likeBtn1">
+                                            <span class="heart" id="heartIcon1"><i class="fa fa-heart"></i></span> <span id="likeCount1">0</span> Likes
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="view-comments-btn" id="viewCommentsBtn1">View Comments</button>
+                                    </li>
+                                </ul>
+                                <div id="viewsCount">1000 views</div>
+                            </div>
+                            <div class="comment-field">
+                                <input type="text" placeholder="Write a comment...">
+                                <button><i class="fa fa-paper-plane"></i></button>
+                            </div>
+                            <div class="comments-section" id="commentsSection1">
+                                <div class="comment">
+                                    <img src="images/user3.jpg" alt="commenter profile image">
+                                    <p>Comment 1: Great post!</p>
+                                    <div class="comment-interactions">
+                                        <span class="comment-like-btn">Like</span>
+                                        <span class="comment-reply-btn">Reply</span>
+                                    </div>
+                                </div>
+                                <div class="comment comment-reply">
+                                    <img src="images/user2.jpg" alt="replier profile image">
+                                    <p>Reply 1: Thanks!</p>
+                                    <div class="comment-interactions">
+                                        <span class="comment-like-btn">Like</span>
+                                        <span class="comment-reply-btn">Reply</span>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <img src="images/user4.jpg" alt="commenter profile image">
+                                    <p>Comment 2: Thanks for sharing!</p>
+                                    <div class="comment-interactions">
+                                        <span class="comment-like-btn">Like</span>
+                                        <span class="comment-reply-btn">Reply</span>
+                                    </div>
+                                </div>
+                                <!-- Add more comments here -->
+                            </div>
+                        </div>
+                        
+                        <div class="post-container" id="post2">
+                            <div class="post-title">
+                                <img src="images/user2.jpg" alt="user picture">
+                                <ul>
+                                    <li><h3>Arham Kabir <span> . 3 hours ago</span></h3></li>
+                                    <li><span>02 March at 1:55 PM</span></li>
+                                </ul>
+                                <p>Here is an explicit content image with blur effect that you can toggle.</p>
+                            </div>
+                            <div class="image-container explicit-content">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvsxiFMek_QzilZ9X_ELH5ZQCcWOvcYYvMVA&s" alt="Explicit Content" id="explicitImage" style="height:400px;" class="double-tap-to-like">
+                                <div class="eye-mask" id="toggleBlurBtn">👁️‍🗨️</div>
+                            </div>
+                            <div class="post-interactions">
+                                <ul>
+                                    <li>
+                                        <button class="like-btn" id="likeBtn2">
+                                            <span class="heart" id="heartIcon2"><i class="fa fa-heart"></i></span> <span id="likeCount2">0</span> Likes
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="view-comments-btn" id="viewCommentsBtn2">View Comments</button>
+                                    </li>
+                                </ul>
+                                <div id="viewsCount">2000 views</div>
+                            </div>
+                            <div class="comment-field">
+                                <input type="text" placeholder="Write a comment...">
+                                <button><i class="fa fa-paper-plane"></i></button>
+                            </div>
+                            <div class="comments-section" id="commentsSection2">
+                                <div class="comment">
+                                    <img src="images/user3.jpg" alt="commenter profile image">
+                                    <p>Comment 1: Nice content!</p>
+                                    <div class="comment-interactions">
+                                        <span class="comment-like-btn">Like</span>
+                                        <span class="comment-reply-btn">Reply</span>
+                                    </div>
+                                </div>
+                                <div class="comment comment-reply">
+                                    <img src="images/user2.jpg" alt="replier profile image">
+                                    <p>Reply 1: Appreciate it!</p>
+                                    <div class="comment-interactions">
+                                        <span class="comment-like-btn">Like</span>
+                                        <span class="comment-reply-btn">Reply</span>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <img src="images/user4.jpg" alt="commenter profile image">
+                                    <p>Comment 2: Very informative.</p>
+                                    <div class="comment-interactions">
+                                        <span class="comment-like-btn">Like</span>
+                                        <span class="comment-reply-btn">Reply</span>
+                                    </div>
+                                </div>
+                                <!-- Add more comments here -->
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+    
+                    </div> 
+                   
+                </div>
+                 
+    
+                <!-- <div class="home-right">
+                    
+    
+                        <div class="messenger">
+                            <div class="messenger-search">
+                                <i class="fa-solid fa-user-group"></i>
+                                <h4>Messenger</h4>
+                                <input type="search" placeholder="Search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <ul>
+                                <li>
+                                    <img src="images/us2.png" alt="user">
+                                    <b>Zunayed Hossain <span>Online</span></b>
+                                    <i class="fa-brands fa-facebook-messenger"></i>
+                                </li>
+    
+                                <li>
+                                    <img src="images/us3.png" alt="user">
+                                    <b>Armanul Islam <span>Offline</span></b>
+                                    <i class="fa-brands fa-facebook-messenger"></i>
+                                </li>
+    
+                                <li>
+                                    <img src="images/us4.png" alt="user">
+                                    <b>Mohammad Amir <span>Online</span></b>
+                                    <i class="fa-brands fa-facebook-messenger"></i>
+                                </li>
+                                <br>
+                            
+                                <button class="see-more-btn">See more <i class="fa-solid fa-angle-down"></i></button>
+                            </ul>
+                            
+                            
+                        </div>
+    
+                    
+                </div> -->
+               
+    
+    
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <script src="assets/script.js"></script>
+    
+    <script src="assets/script2.js"></script>
+
+</body>
+</html>

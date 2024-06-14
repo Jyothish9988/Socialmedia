@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #e96443, #904e95);
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .profile-container {
+            max-width: fill;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover {
+            background-image: url('https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-info img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            border: 5px solid #fff;
+            margin-right: -65px; /* Adjusted margin */
+            margin-top: -65px; /* Added */
+            position: relative; /* Added */
+            z-index: 1; /* Added */
+        }
+        
+        .profile-info div {
+            text-align: left;
+            margin-left: 100px; /* Adjusted margin */
+        }
+        .profile-info h1 {
+            margin: 0;
+        }
+
+        .profile-info p {
+            color: #888;
+            margin: 5px 0;
+        }
+
+        .profile-info .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: 1px solid #904e95;
+            color: #904e95;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .profile-info .btn:hover {
+            background: #904e95;
+            color: #fff;
+        }
+
+        .profile-details {
+            padding: 20px;
+        }
+
+        .profile-details h2 {
+            margin-bottom: 15px;
+        }
+
+        .profile-details p {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .posts {
+            padding: 20px;
+        }
+
+        .posts h2 {
+            margin-bottom: 20px;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .post {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .post img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .post h3 {
+            margin: 10px 0 5px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .post p {
+            margin-bottom: 0;
+            color: #666;
+        }
+
+        .post .likes {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            color: #e96443;
+        }
+
+        .post .likes i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="profile-container">
+        <!-- Content will be loaded here -->
+    </div>
+
+    <!-- Include JavaScript to load another HTML file -->
+    <script>
+        // Function to load external HTML file
+        function includeHTML(file) {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('profile-container').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', file, true);
+            xhr.send();
+        }
+
+        // Load another HTML file
+        includeHTML('header.html');
+    </script>
+    <div class="profile-container">
+        <div class="cover"></div>
+        <div class="profile-info">
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="User Image">
+            <div>
+                <h1>Mark Williams</h1>
+                <p>Web Developer | Photographer | New York</p>
+                <a href="#" class="btn">Edit Profile</a>
+            </div>
+        </div>
+        <div class="profile-details">
+            <h2>About</h2>
+            <p>Web Developer with 5 years of experience in creating stunning websites and applications. Passionate about photography and capturing moments. Living in New York City.</p>
+        </div>
+        <div class="posts">
+            <h2>Recent Photos</h2>
+            <div class="post-grid">
+                <div class="post">
+                    <img src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Post Image">
+                    <h3>Sunset in the Mountains</h3>
+                    <p>Captured this beautiful sunset during my hike last weekend.</p>
+                    <div class="likes">
+                        <i class="fas fa-heart"></i> 120 Likes
+                    </div>
+                </div>
+                <div class="post">
+                    <img src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Post Image">
+                    <h3>Cityscape</h3>
+                    <p>The city looks amazing from this viewpoint.</p>
+                    <div class="likes">
+                        <i class="fas fa-heart"></i> 95 Likes
+                    </div>
+                </div>
+                <div class="post">
+                    <img src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Post Image">
+                    <h3>Mountain Adventure</h3>
+                    <p>A thrilling mountain adventure with breathtaking views.</p>
+                    <div class="likes">
+                        <i class="fas fa-heart"></i> 200 Likes
+                    </div>
+                </div>
+                <div class="post">
+                    <img src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Post Image">
+                    <h3>Serene Lake</h3>
+                    <p>Found peace and tranquility at this lake.</p>
+                    <div class="likes">
+                        <i class="fas fa-heart"></i> 150 Likes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome for the heart icon -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
