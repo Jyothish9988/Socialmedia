@@ -52,6 +52,7 @@
             max-width: 100%;
             border-radius: 10px;
             margin-top: 10px;
+            cursor: pointer;
         }
         .post-interactions ul {
             list-style: none;
@@ -141,6 +142,12 @@
         .comment p {
             margin: 0;
         }
+        .comment img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
         .comment-reply {
             margin-left: 20px;
         }
@@ -163,7 +170,7 @@
 
 <div class="post-container" id="post1">
     <div class="post-title">
-        <img src="images/user2.jpg" alt="user picture" >
+        <img src="images/user2.jpg" alt="user picture">
         <ul>
             <li><h3>Arham Kabir <span> . 2 hours ago</span></h3></li>
             <li><span>02 March at 12:55 PM</span></li>
@@ -173,7 +180,7 @@
         </p>
     </div>
     <div class="post-images">
-        <img src="images/pp.jpg" alt="post images 01" style="height:400px;" >
+        <img src="images/pp.jpg" alt="post images 01" style="height:400px;" class="double-tap-to-like">
     </div>
     <div class="post-interactions">
         <ul>
@@ -194,6 +201,7 @@
     </div>
     <div class="comments-section" id="commentsSection1">
         <div class="comment">
+            <img src="images/user3.jpg" alt="commenter profile image">
             <p>Comment 1: Great post!</p>
             <div class="comment-interactions">
                 <span class="comment-like-btn">Like</span>
@@ -201,6 +209,7 @@
             </div>
         </div>
         <div class="comment comment-reply">
+            <img src="images/user2.jpg" alt="replier profile image">
             <p>Reply 1: Thanks!</p>
             <div class="comment-interactions">
                 <span class="comment-like-btn">Like</span>
@@ -208,6 +217,7 @@
             </div>
         </div>
         <div class="comment">
+            <img src="images/user4.jpg" alt="commenter profile image">
             <p>Comment 2: Thanks for sharing!</p>
             <div class="comment-interactions">
                 <span class="comment-like-btn">Like</span>
@@ -228,7 +238,7 @@
         <p>Here is an explicit content image with blur effect that you can toggle.</p>
     </div>
     <div class="image-container explicit-content">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvsxiFMek_QzilZ9X_ELH5ZQCcWOvcYYvMVA&s" alt="Explicit Content" id="explicitImage" style="height:400px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvsxiFMek_QzilZ9X_ELH5ZQCcWOvcYYvMVA&s" alt="Explicit Content" id="explicitImage" style="height:400px;" class="double-tap-to-like">
         <div class="eye-mask" id="toggleBlurBtn">👁️‍🗨️</div>
     </div>
     <div class="post-interactions">
@@ -250,6 +260,7 @@
     </div>
     <div class="comments-section" id="commentsSection2">
         <div class="comment">
+            <img src="images/user3.jpg" alt="commenter profile image">
             <p>Comment 1: Nice content!</p>
             <div class="comment-interactions">
                 <span class="comment-like-btn">Like</span>
@@ -257,6 +268,7 @@
             </div>
         </div>
         <div class="comment comment-reply">
+            <img src="images/user2.jpg" alt="replier profile image">
             <p>Reply 1: Appreciate it!</p>
             <div class="comment-interactions">
                 <span class="comment-like-btn">Like</span>
@@ -264,6 +276,7 @@
             </div>
         </div>
         <div class="comment">
+            <img src="images/user4.jpg" alt="commenter profile image">
             <p>Comment 2: Very informative.</p>
             <div class="comment-interactions">
                 <span class="comment-like-btn">Like</span>
@@ -358,6 +371,40 @@
                 replyField.classList.add('comment-field');
                 replyField.innerHTML = '<input type="text" placeholder="Write a reply..."><button><i class="fa fa-paper-plane"></i></button>';
                 btn.parentElement.parentElement.appendChild(replyField);
+            });
+        });
+
+        // Double-tap to like functionality
+        document.querySelectorAll('.double-tap-to-like').forEach(image => {
+            let lastTap = 0;
+            image.addEventListener('touchend', function(event) {
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTap;
+                if (tapLength < 500 && tapLength > 0) {
+                    // Like the image
+                    if (image.id === 'explicitImage') {
+                        liked2 = !liked2;
+                        if (liked2) {
+                            likes2++;
+                            likeBtn2.classList.add('liked');
+                        } else {
+                            likes2--;
+                            likeBtn2.classList.remove('liked');
+                        }
+                        likeCount2.textContent = likes2;
+                    } else {
+                        liked1 = !liked1;
+                        if (liked1) {
+                            likes1++;
+                            likeBtn1.classList.add('liked');
+                        } else {
+                            likes1--;
+                            likeBtn1.classList.remove('liked');
+                        }
+                        likeCount1.textContent = likes1;
+                    }
+                }
+                lastTap = currentTime;
             });
         });
     });
